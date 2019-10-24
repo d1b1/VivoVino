@@ -25,30 +25,24 @@ module.exports = function(req, res) {
 		${body.data.queryName}(_id: "${body.data.contentId}") {
 			_id
 	    appellation
-	    dropdown
 	    grapes {
 	      _id
-	      repeater {
-	        grapeVariety
-	      }
+	      nameOfGrape
 	    }
-	    name
-	    object {
+	    organicType
+	    wineIsFrom {
 	      country
 	      town
 	    }
 	    wineName
 	    winery {
 	      _id
-	      winemakerInfo {
-	        object {
-	          streetAddress
-	          town
-	        }
-	        winemaker
+	      locationOfWinery {
+	        country
+	        town
 	      }
+	      winery
 	    }
-	    year
 		}
 	}`;
 

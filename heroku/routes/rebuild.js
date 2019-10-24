@@ -19,30 +19,25 @@ module.exports = (req, res) => {
 		${queryName} {
 			items {
 				_id
-				appellation
-				dropdown
-				grapes {
-					_id
-					repeater {
-						grapeVariety
-					}
-				}
-				object {
-					country
-					town
-				}
-				wineName
-				winery {
-					_id
-					winemakerInfo {
-						object {
-							streetAddress
-							town
-						}
-						winemaker
-					}
-				}
-				year
+		    appellation
+		    grapes {
+		      _id
+		      nameOfGrape
+		    }
+		    organicType
+		    wineIsFrom {
+		      country
+		      town
+		    }
+		    wineName
+		    winery {
+		      _id
+		      locationOfWinery {
+		        country
+		        town
+		      }
+		      winery
+		    }
 			}
 		}
 	}
