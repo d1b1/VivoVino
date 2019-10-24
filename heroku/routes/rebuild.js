@@ -8,16 +8,11 @@ const takeshape = require('../services/takeshape')
 
 module.exports = (req, res) => {
 
-	if (!req.query.contentType) {
-		res.status(200).send('Sorry you need to the the content type. ?contentType=cheese')
-		return
-	}
-
 	// Setup the index.
-	const index = algolia.initIndex(req.query.contentType);
+	const index = algolia.initIndex('wine');
 
 	// Set the query name.
-	var queryName = 'get' + titleCase(req.query.contentType) + 'List'
+	var queryName = 'getWineList'
 
 	// Set the Query for the content type.
 	var query = `{
@@ -58,7 +53,7 @@ module.exports = (req, res) => {
 		// Check if we have the content type in the results.
 		if (!_.has(result.data, queryName)) {
 			console.log('Dump the query result', result);
-			return res.status(200).send(`Sorry, could not find the content type "${req.query.contentType}". (${queryName}) Check your content type again.`)
+			return res.status(200).send(`Sorry, could not find the content type. (${queryName}) Check your content type again.`)
 		}
 
 		var items = result.data[queryName].items
@@ -75,7 +70,7 @@ module.exports = (req, res) => {
 		index
 			.addObjects(list)
 			.then((data) => {
-				res.status(200).send(`Rebuild all takeshape data to the index "${req.query.contentType}", having ${data.objectIDs.length} records.`)
+				res.status(200).send(`Rebuild all takeshape data to the index, having ${data.objectIDs.length} records.`)
 			})
 			.catch(err => {
 				console.log('Got an Eror', err);
